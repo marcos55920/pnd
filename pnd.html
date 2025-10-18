@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marcos Antonio de Jesus</title>
+  <style>
+    body {
+      background: #f7f9fc;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 0 60px 0;
+      color: #333;
+      text-align: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    header {
+      background: #004aad;
+      color: white;
+      padding: 40px 0 20px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-bottom: 3px solid #003080;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.3em;
+    }
+    header p {
+      margin: 12px 0 0 0;
+      font-size: 1.25em;
+    }
+    .subtitle {
+      margin-top: 38px;
+      margin-bottom: 36px;
+      font-size: 1.8em;
+      color: #004aad;
+      font-weight: bold;
+    }
+    .buttons-container {
+      max-width: 960px;
+      margin: 0 auto 60px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px 30px;
+    }
+    button {
+      background-color: #004aad;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 1.3em;
+      font-weight: bold;
+      padding: 22px 35px;
+      min-width: 165px;
+      margin: 0;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+    }
+    button:hover, button:focus {
+      background-color: #003080;
+      transform: translateY(-2px) scale(1.04);
+      outline: none;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-content {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      max-width: 96vw;
+      max-height: 92vh;
+      box-shadow: 0 0 16px #000;
+      overflow: auto;
+      padding: 16px 12px 12px 12px;
+    }
+    .modal-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    .close-btn {
+      position: absolute;
+      top: 2px;
+      right: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .close-btn svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+      stroke: #ff4444;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      fill: none;
+    }
+    .close-btn:hover svg, .close-btn:focus svg {
+      stroke: #b20000;
+    }
+    footer {
+      width: 100%;
+      background: #f7f9fc;
+      color: #555;
+      font-size: 1em;
+      padding: 24px 0 16px 0;
+      box-shadow: 0 -1px 7px rgba(0,0,0,0.07);
+      text-align: center;
+      box-sizing: border-box;
+      margin-top: 35px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Marcos Antonio de Jesus</h1>
+    <p>Profº Matemática - Fund II e Ensino Médio </p>
+  </header>
+
+  <div class="subtitle">Dicas para o PND - MATEMÁTICA</div>
+
+  <div class="buttons-container">
+    <button data-img="01">Questão 01</button>
+    <button data-img="02">Questão 02</button>
+    <button data-img="03">Questão 03</button>
+    <button data-img="04">Questão 04</button>
+    <button data-img="05">Questão 05</button>
+    <button data-img="06">Questão 06</button>
+    <button data-img="07">Questão 07</button>
+    <button data-img="08">Questão 08</button>
+    <button data-img="09">Questão 09</button>
+    <button data-img="10">Questão 10</button>
+    <button data-img="11">Questão 11</button>
+    <button data-img="12">Questão 12</button>
+    <button data-img="13">Questão 13</button>
+    <button data-img="14">Questão 14</button>
+    <button data-img="15">Questão 15</button>
+    <button data-img="16">Questão 16</button>
+    <button data-img="17">Questão 17</button>
+    <button data-img="18">Questão 18</button>
+    <button data-img="19">Questão 19</button>
+    <button data-img="20">Questão 20</button>
+  </div>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn" aria-label="Fechar imagem">
+        <svg viewBox="0 0 20 20">
+          <line x1="5" y1="5" x2="15" y2="15" />
+          <line x1="15" y1="5" x2="5" y2="15" />
+        </svg>
+      </button>
+      <img id="modalImage" src="" alt="Imagem da questão" />
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 - Produzido por Marcos Antonio de Jesus</p>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.buttons-container button');
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const imgNumber = button.getAttribute('data-img');
+        modalImage.src = `C:/Users/rafa_/OneDrive/Área de Trabalho/Curso/DEP/Dicas png/${imgNumber}.png`;
+        modalImage.alt = `Questão ${imgNumber}`;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImage.src = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalImage.src = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalImage.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
