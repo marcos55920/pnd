@@ -193,7 +193,7 @@
     buttons.forEach(button => {
       button.addEventListener('click', () => {
         const imgNumber = button.getAttribute('data-img');
-        modalImage.src = `C:/Users/rafa_/OneDrive/Área de Trabalho/Curso/DEP/Dicas png/${imgNumber}.png`;
+        modalImage.src = `${imgNumber}.png`;
         modalImage.alt = `Questão ${imgNumber}`;
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
